@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playstore/screen/app_for/provider/app_pro.dart';
+import 'package:playstore/utiles/LIST.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class Iapp extends StatefulWidget {
   const Iapp({Key? key}) : super(key: key);
@@ -47,100 +49,77 @@ class _IappState extends State<Iapp> {
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
-              Text("Now with siri",style: TextStyle(color: CupertinoColors.activeBlue,fontSize: 20),),
-              SizedBox(height: 10,),
               SizedBox(
-                height: 245,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: appProviderf!.data.length,
-                  itemBuilder: (context, index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("${appProviderf!.data[index].name}",style: TextStyle(color: CupertinoColors.white,fontSize: 20)),
-                      SizedBox(height: 5,),
-                      Container(
-                        height: 220,
-                        width: 300,
-                        margin: EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: CupertinoColors.secondaryLabel),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            appProviderf!.imgi1(index),
-                            appProviderf!.imgi2(index),
-                            appProviderf!.imgi3(index),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                height: 5,
               ),
-              SizedBox(height: 50,),
+              Container(
+                height: 1.5,
+                color: CupertinoColors.systemGrey3,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                'NOW WITH SIRI',
+                style:
+                TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                'Triplt:Travel Planner',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
+              ),
+              Text(
+                'Quickly get flight info with Siri',
+                style: TextStyle(color: Colors.grey, fontSize: 25),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Image.asset(
+                'assets/images/a2.png',
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Discover AR Gaming",style: TextStyle(color: CupertinoColors.white,fontWeight: FontWeight.bold,fontSize: 25),),
-                  Text("See All",style: TextStyle(color: CupertinoColors.activeBlue,fontSize: 23),),
+                  Text('12 Great Apps for IOS 12',style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold)),
+                  Text('See All',style: TextStyle(fontSize: 25,color: Colors.blue),),
                 ],
               ),
-              SizedBox(height: 20,),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => Container(
-                    height: 90,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          height: 75,
-                          width: 75,
-                          decoration: BoxDecoration(
-                              color: CupertinoColors.activeBlue,
-                              borderRadius: BorderRadius.circular(5)),
-                          alignment: Alignment.center,
-                          child: Text("${appProviderf!.data[index].logo}",style: TextStyle(color: CupertinoColors.white,fontSize: 22)),
-                        ),
-                        SizedBox(width: 20,),
-                        Row(
-                          children: [
-                            Container(
-                              height: 75,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("${appProviderf!.data[index].name}",style: TextStyle(color: CupertinoColors.white,fontSize: 20),),
-                                  SizedBox(height: 3,),
-                                  Text("${appProviderf!.data[index].cat} | ${appProviderf!.data[index].size}",style: TextStyle(color: CupertinoColors.white.withOpacity(0.70)),),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Expanded(child: SizedBox()),
-                        Container(
-                          height: 28,
-                          width: 75,
-                          decoration: BoxDecoration(
-                              color: CupertinoColors.activeBlue.withOpacity(0.30),
-                              borderRadius: BorderRadius.circular(25)
-                          ),
-                          alignment: Alignment.center,
-                          child: Text("Get",style: TextStyle(color: CupertinoColors.activeBlue)),
-                        )
-                      ],
+              Expanded(child: ListView.builder(itemCount: total.length,itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Container(height: 75,width: 75,child: ClipRRect(borderRadius: BorderRadius.circular(8),child: Image.asset('${total[index]}',fit: BoxFit.cover,))),
+                    SizedBox(width: 10,),
+                    Container(
+                      width: 235,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('${totaln[index]}',style: TextStyle(fontSize: 20,color: Colors.white),),
+                                SizedBox(height: 3,),
+                                Text('${totaln2[index]}',style: TextStyle(color: Colors.white70,fontSize: 12),)
+                              ]),
+                          Container(decoration: BoxDecoration(color: Colors.blue.withOpacity(0.30),borderRadius: BorderRadius.circular(25)),padding: EdgeInsets.only(top: 8,bottom: 8,left: 20,right: 20),child: Text('OPEN',style: TextStyle(color: Colors.blue)),),
+                        ],
+                      ),
                     ),
-                  ),
-                  itemCount: appProviderf!.data.length,
+                  ],
                 ),
-              ),
+              ),))
             ],
           ),
         ),

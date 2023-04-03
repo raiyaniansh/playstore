@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playstore/screen/app_for/provider/app_pro.dart';
+import 'package:playstore/utiles/LIST.dart';
 import 'package:provider/provider.dart';
 
 class AppFor extends StatefulWidget {
@@ -21,136 +22,162 @@ class _AppForState extends State<AppFor> {
         backgroundColor: Color(0xff1F1F1F),
         body: Padding(
           padding: const EdgeInsets.only(top: 10,left: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            scrollDirection: Axis.vertical,
             children: [
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                height: 15,
+              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Recommended for you',
-                      style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(child: SizedBox()),
-                  Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white70,
+                  Text(
+                    'Musics Apps',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white70),
                   ),
-                  SizedBox(width: 15,)
+                  Icon(Icons.arrow_forward,color: Colors.white70),
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
-              SizedBox(
-                height: 130,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, 'secondapp',arguments: index);
-                      },
+              Expanded(
+                child: SizedBox(
+                  height: 130,
+                  child: ListView.builder(
+                    itemCount: img.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(5),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 75,
-                            width: 75,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              boxShadow: [
-                                BoxShadow(color: Colors.black26,blurRadius: 1,spreadRadius: 1,offset: Offset(2,2))
-                              ],
-                              borderRadius: BorderRadius.circular(10),
+                          ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: Container(
+                              child: SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Image.asset(
+                                  img[index],
+                                  fit: BoxFit.cover,
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ),
                             ),
-                            alignment: Alignment.center,
-                            child: Text("${appProviderf!.data[index].logo}",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold)),
                           ),
-                          SizedBox(height: 10,),
-                          Container(width: 65,child: Text("${appProviderf!.data[index].name}",style: TextStyle(color: Colors.white,fontSize: 18)),),
-                          Container(width: 65,child: Text("${appProviderf!.data[index].size}",style: TextStyle(color: Colors.white70,fontSize: 12)),),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(name[index],style: TextStyle(color: Colors.white)),
                         ],
                       ),
                     ),
                   ),
-                  itemCount: appProviderf!.data.length,
                 ),
               ),
-              SizedBox(height: 20,),
-              Text("Suggested for you",style: TextStyle(color: Colors.white70,fontSize: 20,fontWeight: FontWeight.bold)),
-              SizedBox(height: 15,),
               SizedBox(
-                height: 280,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, 'secondapp',arguments: index);
-                      },
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Social Apps',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white70),
+                  ),
+                  Icon(Icons.arrow_forward,color: Colors.white),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: 130,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    itemCount: socialimg.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(5),
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 220,
-                            width: 300,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey.shade800),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                appProviderf!.imgi1(index),
-                                appProviderf!.imgi2(index),
-                                appProviderf!.imgi3(index),
-                              ],
+                          ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, 'music',
+                                    arguments: index);
+                              },
+                              child: Image.asset(
+                                socialimg[index],
+                                fit: BoxFit.cover,
+                                height: 100,
+                                width: 100,
+                              ),
                             ),
                           ),
-                          SizedBox(height: 10,),
-                          Container(
-                            width: 280,
-                            height: 50,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    boxShadow: [
-                                      BoxShadow(color: Colors.black26,blurRadius: 1,spreadRadius: 1,offset: Offset(2,2))
-                                    ],
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text("${appProviderf!.data[index].logo}",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold)),
-                                ),
-                                SizedBox(width: 10,),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text("${appProviderf!.data[index].name}",style: TextStyle(color: Colors.white,fontSize: 20),),
-                                    SizedBox(height: 10,),
-                                    Row(
-                                      children: [
-                                        Text("${appProviderf!.data[index].rate}",style: TextStyle(color: Colors.white),),
-                                        Icon(Icons.star,color: Colors.white,size: 15,)
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                          SizedBox(
+                            height: 5,
                           ),
+                          Text(socialname[index],style: TextStyle(color: Colors.white)),
                         ],
                       ),
                     ),
                   ),
-                  itemCount: appProviderf!.data.length,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'E-commerce Apps',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white70),
+                  ),
+                  Icon(Icons.arrow_forward,color: Colors.white70),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: 130,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    itemCount: socialimg.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(5 ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: Image.asset(
+                              del[index],
+                              fit: BoxFit.cover,
+                              height: 100,
+                              width: 100,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(delname[index],style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

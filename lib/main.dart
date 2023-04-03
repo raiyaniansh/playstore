@@ -27,7 +27,7 @@ void main() {
           create: (context) => AppProvider(),
         ),
       ],
-      child: Platform.isAndroid ? ios() : android(),
+      child: Platform.isIOS ? ios() : android(),
     ),
   );
 }
